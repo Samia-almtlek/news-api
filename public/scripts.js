@@ -68,13 +68,24 @@ function submitEditForm(event, id) {
         },
         body: JSON.stringify({ title, description, author,category }),
     })
-        .then(response => response.json())
-        .then(data => {
-            alert('News updated successfully!');
-            fetchAllNews();
-        })
-        .catch(err => console.error(err));
-}
+    .then(response => {
+        if (!response.ok) {
+            // إذا كان هناك خطأ في السيرفر، نحصل على الرسالة
+            return response.json().then(error => {
+                throw new Error(error.error);
+            });
+        }
+        return response.json();
+    })
+    .then(data => {
+        alert('News added successfully!');
+        fetchAllNews(); // إعادة تحميل قائمة الأخبار
+    })
+    .catch(err => {
+        // عرض رسالة الخطأ
+        alert(`Error: ${err.message}`);
+    });
+    }
 
 // Add new news
 document.getElementById('news-form').addEventListener('submit', function (e) {
@@ -91,14 +102,24 @@ document.getElementById('news-form').addEventListener('submit', function (e) {
         },
         body: JSON.stringify({ title, description, author ,category}),
     })
-        .then(response => response.json())
-        .then(data => {
-            alert('News added successfully!');
-            fetchAllNews();
-        })
-        .catch(err => console.error(err));
-});
-
+    .then(response => {
+        if (!response.ok) {
+            // إذا كان هناك خطأ في السيرفر، نحصل على الرسالة
+            return response.json().then(error => {
+                throw new Error(error.error);
+            });
+        }
+        return response.json();
+    })
+    .then(data => {
+        alert('News added successfully!');
+        fetchAllNews(); // إعادة تحميل قائمة الأخبار
+    })
+    .catch(err => {
+        // عرض رسالة الخطأ
+        alert(`Error: ${err.message}`);
+    });
+})
 // Search news
 document.getElementById('search-form').addEventListener('submit', function (e) {
     e.preventDefault();

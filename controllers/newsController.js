@@ -42,11 +42,17 @@ exports.updateNews = async (req, res) => {
             author: req.body.author,
             category: req.body.category, // تأكد من معالجة category
         };
-        const news = await News.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        if (!news) return res.status(404).json({ message: 'News not found' });
+          // تحديث مع تفعيل التحقق
+          const news = await News.findByIdAndUpdate(req.params.id, updatedData, {
+            new: true, // إعادة الكائن المحدث
+            runValidators: true, // تشغيل التحقق أثناء التحديث
+        });
+
+        if (!news) return res.status(404).json({ error: 'News not found' });
+
         res.status(200).json(news);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(400).json({ error: error.message }); // إرسال رسالة الخطأ للواجهة
     }
 };
 
