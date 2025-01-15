@@ -53,7 +53,7 @@ exports.deleteNews = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
-
+//Paginated
 exports.getPaginatedNews = async (req, res) => {
     try {
         const limit = parseInt(req.query.limit) || 10; // عدد النتائج في الصفحة
@@ -70,6 +70,21 @@ exports.getPaginatedNews = async (req, res) => {
             count: news.length, // عدد الأخبار المرسلة
             news, // الأخبار
         });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+//Search 
+exports.searchNews = async (req, res) => {
+    try {
+        const { title, author } = req.query;
+        const query = {};
+
+        if (title) query.title = { $regex: title, $options: 'i' }; // البحث في العنوان
+        if (author) query.author = { $regex: author, $options: 'i' }; // البحث في المؤلف
+
+        const news = await News.find(query);
+        res.status(200).json(news);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

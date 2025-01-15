@@ -5,6 +5,10 @@ const NewsController = require('../controllers/newsController');
 // Pagination Route
 router.get('/paginated', NewsController.getPaginatedNews);
 
+//Search news
+router.get('/search', NewsController.searchNews);
+
+
 // CRUD Routes
 router.post('/', NewsController.createNews);    // Create News
 router.get('/', NewsController.getNews);        // Get All News
