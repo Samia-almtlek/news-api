@@ -53,3 +53,24 @@ exports.deleteNews = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
+exports.getPaginatedNews = async (req, res) => {
+    try {
+        const limit = parseInt(req.query.limit) || 10; // عدد النتائج في الصفحة
+        const offset = parseInt(req.query.offset) || 0; // تجاوز عدد معين من السجلات
+
+        const news = await News.find()
+            .skip(offset) // تجاوز عدد معين من السجلات
+            .limit(limit); // تحديد عدد النتائج لكل صفحة
+
+        const total = await News.countDocuments(); // إجمالي عدد السجلات
+
+        res.status(200).json({
+            total, // إجمالي الأخبار
+            count: news.length, // عدد الأخبار المرسلة
+            news, // الأخبار
+        });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
