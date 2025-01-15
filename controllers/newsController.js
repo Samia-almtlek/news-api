@@ -87,14 +87,15 @@ exports.getPaginatedNews = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
-//Search 
+//Search News
 exports.searchNews = async (req, res) => {
     try {
-        const { title, author } = req.query;
+        const { title, author,category } = req.query;
         const query = {};
 
         if (title) query.title = { $regex: title, $options: 'i' }; // البحث في العنوان
         if (author) query.author = { $regex: author, $options: 'i' }; // البحث في المؤلف
+        if (category) query.category = category;
 
         const news = await News.find(query);
         res.status(200).json(news);

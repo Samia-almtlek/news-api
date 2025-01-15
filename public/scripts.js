@@ -126,23 +126,42 @@ document.getElementById('news-form').addEventListener('submit', function (e) {
 // Search news
 document.getElementById('search-form').addEventListener('submit', function (e) {
     e.preventDefault();
+
     const title = document.getElementById('search-title').value;
     const author = document.getElementById('search-author').value;
+    const category = document.getElementById('search-category').value;
 
-    let query = '/api/news/search?';
-    if (title) query += `title=${title}&`;
-    if (author) query += `author=${author}`;
+    // إنشاء كائن URLSearchParams لبناء query string
+    const query = new URLSearchParams();
+    if (title) query.append('title', title);
+    if (author) query.append('author', author);
+    if (category) query.append('category', category);
 
-    fetch(query)
-        .then(response => response.json())
+    // إرسال الطلب باستخدام query string
+    fetch(`/api/news/search?${query.toString()}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error fetching search results');
+            }
+            return response.json();
+        })
         .then(data => {
-            newsContainer.innerHTML = ''; // Clear existing news
+            // عرض النتائج في الصفحة
+            const newsContainer = document.getElementById('news-container');
+            newsContainer.innerHTML = ''; // تفريغ الأخبار السابقة
+
+            if (data.length === 0) {
+                newsContainer.innerHTML = '<p>No news found matching your criteria.</p>';
+                return;
+            }
+
             data.forEach(news => {
                 const newsDiv = document.createElement('div');
                 newsDiv.classList.add('news');
                 newsDiv.innerHTML = `
                     <h3>${news.title}</h3>
                     <p>${news.description}</p>
+                    <p><strong>Category:</strong> ${news.category}</p>
                     <small>Author: ${news.author}</small>
                     <div class="actions">
                         <button onclick="deleteNews('${news._id}')">Delete</button>
@@ -152,8 +171,9 @@ document.getElementById('search-form').addEventListener('submit', function (e) {
                 newsContainer.appendChild(newsDiv);
             });
         })
-        .catch(err => console.error(err));
+        .catch(err => console.error('Error:', err));
 });
+
 
 // Delete news
 function deleteNews(id) {
