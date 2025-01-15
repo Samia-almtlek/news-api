@@ -35,6 +35,13 @@ exports.getNewsById = async (req, res) => {
 // Update News
 exports.updateNews = async (req, res) => {
     try {
+        // إعداد البيانات لتحديثها
+        const updatedData = {
+            title: req.body.title,
+            description: req.body.description,
+            author: req.body.author,
+            category: req.body.category, // تأكد من معالجة category
+        };
         const news = await News.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!news) return res.status(404).json({ message: 'News not found' });
         res.status(200).json(news);

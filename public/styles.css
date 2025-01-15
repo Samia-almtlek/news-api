@@ -156,3 +156,18 @@ h1 {
 #search-form button:hover {
     opacity: 0.9;
 }
+/* Category Styles */
+.news small {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    width: 100%;
+}

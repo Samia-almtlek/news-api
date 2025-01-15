@@ -13,7 +13,13 @@ const NewsSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    publishedAt: {
+   
+    category: {
+        type: String,
+        enum: ['Politics', 'Sports', 'Technology', 'Health', 'Entertainment'],
+        required: true,
+    },
+    createdAt: {
         type: Date,
         default: Date.now,
     },
