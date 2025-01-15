@@ -54,13 +54,24 @@ function submitEditForm(event, id) {
         },
         body: JSON.stringify({ name, email }),
     })
-        .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            // إذا كان هناك خطأ في السيرفر، نحصل على الرسالة
+            return response.json().then(error => {
+                throw new Error(error.error);
+            });
+        }
+        return response.json();
+    })
         .then(data => {
             alert('User updated successfully!');
             fetchAllUsers();
         })
-        .catch(err => console.error(err));
-}
+        .catch(err =>{
+        console.error(err);
+        alert(`Error: ${err.message}`);
+        });
+        }
 
 // Add new user
 document.getElementById('user-form').addEventListener('submit', function (e) {
@@ -76,12 +87,23 @@ document.getElementById('user-form').addEventListener('submit', function (e) {
         },
         body: JSON.stringify({ name, email, password }),
     })
-        .then(response => response.json())
-        .then(data => {
-            alert('User added successfully!');
-            fetchAllUsers();
-        })
-        .catch(err => console.error(err));
+    .then(response => {
+        if (!response.ok) {
+            // إذا كان هناك خطأ في السيرفر، نحصل على الرسالة
+            return response.json().then(error => {
+                throw new Error(error.error);
+            });
+        }
+        return response.json();
+    })
+    .then(data => {
+        alert('User added successfully!');
+        fetchAllUsers(); // إعادة تحميل قائمة المستخدمين
+    })
+    .catch(err => {
+        // عرض رسالة الخطأ في واجهة المستخدم
+        alert(`Error: ${err.message}`);
+    });
 });
 
 // Delete user

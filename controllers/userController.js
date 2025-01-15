@@ -2,7 +2,17 @@ const User = require('../models/userModel');
 
 // Create User
 exports.createUser = async (req, res) => {
-    try {
+      // التحقق الإضافي على مستوى السيرفر
+      try{
+      const { name, email, password } = req.body;
+
+      if (!name || !email || !password) {
+          return res.status(400).json({ error: 'All fields are required' });
+      }
+
+      if (!/^[a-zA-Z\s]+$/.test(name)) {
+          return res.status(400).json({ error: 'Name must only contain letters' });
+      }
         const user = new User(req.body);
         await user.save();
         res.status(201).json(user);
@@ -35,6 +45,17 @@ exports.getUserById = async (req, res) => {
 // Update User
 exports.updateUser = async (req, res) => {
     try {
+        const { name, email } = req.body;
+        // التحقق من أن الاسم لا يحتوي على أرقام
+
+        if (name && !/^[a-zA-Z\s]+$/.test(name)) {
+            return res.status(400).json({ error: 'Name must only contain letters' });
+        }
+         // التحقق من صحة البريد الإلكتروني
+         if (email && !/.+@.+\..+/.test(email)) {
+            return res.status(400).json({ error: 'Email must be valid' });
+        }
+
         const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!user) return res.status(404).json({ message: 'User not found' });
         res.status(200).json(user);
