@@ -1,0 +1,158 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    line-height: 1.6;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Header */
+h1 {
+    color: #444;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* News Container */
+.news {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.news h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #222;
+}
+
+.news p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.news small {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.actions {
+    margin-top: 10px;
+}
+
+.actions button {
+    margin-right: 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.actions button:hover {
+    opacity: 0.9;
+}
+
+.actions button:first-child {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.actions button:nth-child(2) {
+    background-color: #3498db;
+    color: #fff;
+}
+
+/* Edit Form */
+.edit-form {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.edit-form input,
+.edit-form textarea {
+    width: calc(100% - 20px);
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.edit-form button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.edit-form button:first-child {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+.edit-form button:nth-child(2) {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+/* Add News Form */
+#news-form {
+    margin-bottom: 20px;
+}
+
+#news-form input,
+#news-form textarea {
+    width: calc(100% - 20px);
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+#news-form button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#news-form button:hover {
+    opacity: 0.9;
+}
+/* Search Form */
+#search-form {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+#search-form input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+#search-form button {
+    padding: 10px 20px;
+    background-color: #2ecc71;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#search-form button:hover {
+    opacity: 0.9;
+}

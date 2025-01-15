@@ -1,0 +1,35 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Management</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <h1>News Management</h1>
+
+    <!-- Section to Add News -->
+    <h2>Add News</h2>
+    <form id="news-form">
+        <input type="text" id="title" placeholder="Title" required>
+        <textarea id="description" placeholder="Description" required></textarea>
+        <input type="text" id="author" placeholder="Author" required>
+        <button type="submit">Add News</button>
+    </form>
+
+    <!-- Section to Search News -->
+<h2>Search News</h2>
+<form id="search-form">
+    <input type="text" id="search-title" placeholder="Search by Title">
+    <input type="text" id="search-author" placeholder="Search by Author">
+    <button type="submit">Search</button>
+</form>
+
+    <!-- Section to Display News -->
+    <h2>All News</h2>
+    <div id="news-container"></div>
+
+    <script src="/scripts.js"></script>
+
+</body>
+</html>
