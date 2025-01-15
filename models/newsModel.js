@@ -28,6 +28,20 @@ const NewsSchema = new mongoose.Schema({
         enum: ['Politics', 'Sports', 'Technology', 'Health', 'Entertainment'],
         required: [true, 'Category is required'], // التحقق من وجود التصنيف
     },
+    start_date: {
+        type: Date,
+        required: [true, 'Start date is required'],
+    },
+    end_date: {
+        type: Date,
+        required: [true, 'End date is required'],
+        validate: {
+            validator: function (value) {
+                return value > this.start_date; // تحقق أن تاريخ النهاية بعد البداية
+            },
+            message: 'End date must be after start date',
+        },
+    },
     createdAt: {
         type: Date,
         default: Date.now,

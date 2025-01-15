@@ -94,13 +94,16 @@ document.getElementById('news-form').addEventListener('submit', function (e) {
     const description = document.getElementById('description').value;
     const author = document.getElementById('author').value;
     const category = document.getElementById('category').value;
+    const start_date = document.getElementById('start_date').value;
+    const end_date = document.getElementById('end_date').value;
+
 
     fetch('/api/news', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ title, description, author ,category}),
+        body: JSON.stringify({ title, description, author ,category, start_date, end_date}),
     })
     .then(response => {
         if (!response.ok) {
