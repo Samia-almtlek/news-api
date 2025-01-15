@@ -26,6 +26,9 @@ mongoose.connect(dbConfig.mongoURI)
 app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/news', require('./routes/newsRoutes'));
 
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 
 
