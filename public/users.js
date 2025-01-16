@@ -56,7 +56,6 @@ function submitEditForm(event, id) {
     })
     .then(response => {
         if (!response.ok) {
-            // إذا كان هناك خطأ في السيرفر، نحصل على الرسالة
             return response.json().then(error => {
                 throw new Error(error.error);
             });
@@ -89,7 +88,6 @@ document.getElementById('user-form').addEventListener('submit', function (e) {
     })
     .then(response => {
         if (!response.ok) {
-            // إذا كان هناك خطأ في السيرفر، نحصل على الرسالة
             return response.json().then(error => {
                 throw new Error(error.error);
             });
@@ -98,10 +96,9 @@ document.getElementById('user-form').addEventListener('submit', function (e) {
     })
     .then(data => {
         alert('User added successfully!');
-        fetchAllUsers(); // إعادة تحميل قائمة المستخدمين
+        fetchAllUsers(); 
     })
     .catch(err => {
-        // عرض رسالة الخطأ في واجهة المستخدم
         alert(`Error: ${err.message}`);
     });
 });

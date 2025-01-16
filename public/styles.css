@@ -293,7 +293,7 @@ form button:hover {
    Edit Form
 ============================ */
 .edit-form {
-    display: none; /* الإخفاء الافتراضي */
+    display: none; 
     margin-top: 10px;
     background: #eef;
     padding: 10px;

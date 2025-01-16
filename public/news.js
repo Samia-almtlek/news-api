@@ -70,8 +70,8 @@ function submitEditForm(event, id) {
     })
     .then(response => {
         if (!response.ok) {
-            // إذا كان هناك خطأ في السيرفر، نحصل على الرسالة
-            return response.json().then(error => {
+        // If there's a server error, retrieve the message
+        return response.json().then(error => {
                 throw new Error(error.error);
             });
         }
@@ -79,10 +79,9 @@ function submitEditForm(event, id) {
     })
     .then(data => {
         alert('News added successfully!');
-        fetchAllNews(); // إعادة تحميل قائمة الأخبار
+        fetchAllNews(); // Reload the list of news
     })
     .catch(err => {
-        // عرض رسالة الخطأ
         alert(`Error: ${err.message}`);
     });
     }
@@ -107,7 +106,6 @@ document.getElementById('news-form').addEventListener('submit', function (e) {
     })
     .then(response => {
         if (!response.ok) {
-            // إذا كان هناك خطأ في السيرفر، نحصل على الرسالة
             return response.json().then(error => {
                 throw new Error(error.error);
             });
@@ -116,10 +114,9 @@ document.getElementById('news-form').addEventListener('submit', function (e) {
     })
     .then(data => {
         alert('News added successfully!');
-        fetchAllNews(); // إعادة تحميل قائمة الأخبار
+        fetchAllNews(); 
     })
     .catch(err => {
-        // عرض رسالة الخطأ
         alert(`Error: ${err.message}`);
     });
 })
@@ -131,13 +128,13 @@ document.getElementById('search-form').addEventListener('submit', function (e) {
     const author = document.getElementById('search-author').value;
     const category = document.getElementById('search-category').value;
 
-    // إنشاء كائن URLSearchParams لبناء query string
+    // Create a URLSearchParams object to build the query string
     const query = new URLSearchParams();
     if (title) query.append('title', title);
     if (author) query.append('author', author);
     if (category) query.append('category', category);
 
-    // إرسال الطلب باستخدام query string
+    // Send the request using the query string
     fetch(`/api/news/search?${query.toString()}`)
         .then(response => {
             if (!response.ok) {
@@ -146,9 +143,9 @@ document.getElementById('search-form').addEventListener('submit', function (e) {
             return response.json();
         })
         .then(data => {
-            // عرض النتائج في الصفحة
+            // Display the results on the page
             const newsContainer = document.getElementById('news-container');
-            newsContainer.innerHTML = ''; // تفريغ الأخبار السابقة
+            newsContainer.innerHTML = ''; // Clear previous news results
 
             if (data.length === 0) {
                 newsContainer.innerHTML = '<p>No news found matching your criteria.</p>';
@@ -189,7 +186,7 @@ document.getElementById('sort-form').addEventListener('submit', function (e) {
         })
         .then(data => {
             const newsContainer = document.getElementById('news-container');
-            newsContainer.innerHTML = ''; // تفريغ الأخبار السابقة
+            newsContainer.innerHTML = ''; 
 
             data.forEach(news => {
                 const newsDiv = document.createElement('div');

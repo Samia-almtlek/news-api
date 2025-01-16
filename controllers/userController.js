@@ -4,13 +4,14 @@ const User = require('../models/userModel');
 
 // Create User
 exports.createUser = async (req, res) => {
-      // التحقق الإضافي على مستوى السيرفر
       try{
       const { name, email, password } = req.body;
+        // Server-side validation for input fields
 
       if (!name || !email || !password) {
           return res.status(400).json({ error: 'All fields are required' });
       }
+        // Validate that the name only contains letters
 
       if (!/^[a-zA-Z\s]+$/.test(name)) {
           return res.status(400).json({ error: 'Name must only contain letters' });
@@ -48,13 +49,13 @@ exports.getUserById = async (req, res) => {
 exports.updateUser = async (req, res) => {
     try {
         const { name, email } = req.body;
-        // التحقق من أن الاسم لا يحتوي على أرقام
+        // Validate that the name only contains letters
 
         if (name && !/^[a-zA-Z\s]+$/.test(name)) {
             return res.status(400).json({ error: 'Name must only contain letters' });
         }
-         // التحقق من صحة البريد الإلكتروني
-         if (email && !/.+@.+\..+/.test(email)) {
+        // Validate the email format
+        if (email && !/.+@.+\..+/.test(email)) {
             return res.status(400).json({ error: 'Email must be valid' });
         }
 
@@ -82,15 +83,15 @@ exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        // التحقق من وجود المستخدم
+        // Check if the user exists
         const user = await User.findOne({ email });
         if (!user || user.password !== password) {
             return res.status(401).json({ error: 'Invalid email or password' });
         }
 
-        // إنشاء رمز JWT
+        // Generate a JWT token
         const token = jwt.sign({ id: user._id, email: user.email }, 'secretKey', {
-            expiresIn: '1h', // صلاحية الرمز لمدة ساعة
+            expiresIn: '1h', // Token expiration time (1 hour)
         });
 
         res.status(200).json({ token });

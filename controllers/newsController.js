@@ -35,24 +35,26 @@ exports.getNewsById = async (req, res) => {
 // Update News
 exports.updateNews = async (req, res) => {
     try {
-        // إعداد البيانات لتحديثها
+        // Prepare the updated data
         const updatedData = {
             title: req.body.title,
             description: req.body.description,
             author: req.body.author,
-            category: req.body.category, // تأكد من معالجة category
+            category: req.body.category,// Ensure category is processed
         };
-          // تحديث مع تفعيل التحقق
-          const news = await News.findByIdAndUpdate(req.params.id, updatedData, {
-            new: true, // إعادة الكائن المحدث
-            runValidators: true, // تشغيل التحقق أثناء التحديث
+
+        // Update the news item with validation enabled
+
+        const news = await News.findByIdAndUpdate(req.params.id, updatedData, {
+            new: true, // Return the updated document
+            runValidators: true, // Enforce validation during the update
         });
 
         if (!news) return res.status(404).json({ error: 'News not found' });
 
         res.status(200).json(news);
     } catch (error) {
-        res.status(400).json({ error: error.message }); // إرسال رسالة الخطأ للواجهة
+        res.status(400).json({ error: error.message });// Respond with an error message
     }
 };
 
@@ -69,19 +71,18 @@ exports.deleteNews = async (req, res) => {
 //Paginated
 exports.getPaginatedNews = async (req, res) => {
     try {
-        const limit = parseInt(req.query.limit) || 10; // عدد النتائج في الصفحة
-        const offset = parseInt(req.query.offset) || 0; // تجاوز عدد معين من السجلات
-
+        const limit = parseInt(req.query.limit) || 10; // Number of results per page
+        const offset = parseInt(req.query.offset) || 0; // Number of records to skip
         const news = await News.find()
-            .skip(offset) // تجاوز عدد معين من السجلات
-            .limit(limit); // تحديد عدد النتائج لكل صفحة
+            .skip(offset) 
+            .limit(limit); 
 
-        const total = await News.countDocuments(); // إجمالي عدد السجلات
+        const total = await News.countDocuments(); // Total number of records
 
         res.status(200).json({
-            total, // إجمالي الأخبار
-            count: news.length, // عدد الأخبار المرسلة
-            news, // الأخبار
+            total, 
+            count: news.length, 
+            news, 
         });
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -93,9 +94,9 @@ exports.searchNews = async (req, res) => {
         const { title, author,category } = req.query;
         const query = {};
 
-        if (title) query.title = { $regex: title, $options: 'i' }; // البحث في العنوان
-        if (author) query.author = { $regex: author, $options: 'i' }; // البحث في المؤلف
-        if (category) query.category = category;
+        if (title) query.title = { $regex: title, $options: 'i' }; // Search by title
+        if (author) query.author = { $regex: author, $options: 'i' }; // Search by author
+        if (category) query.category = category; // Search by category
 
         const news = await News.find(query);
         res.status(200).json(news);
@@ -108,10 +109,9 @@ exports.getSortedNewsByCategory = async (req, res) => {
     try {
         const { order = 'asc' } = req.query;
 
-        // تحديد ترتيب الفرز (1 للتصاعدي و -1 للتنازلي)
         const sortOrder = order === 'desc' ? -1 : 1;
 
-        // فرز النتائج حسب التصنيف
+        // Fetch and sort results by category
         const news = await News.find().sort({ category: sortOrder });
 
         res.status(200).json(news);

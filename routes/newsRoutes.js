@@ -3,9 +3,9 @@ const router = express.Router();
 const NewsController = require('../controllers/newsController');
 const { protect } = require('../middleware/authMiddleware');
 
-router.post('/', protect, NewsController.createNews); // إضافة خبر جديد محمية
-router.put('/:id', protect, NewsController.updateNews); // تعديل خبر محمية
-router.delete('/:id', protect, NewsController.deleteNews); // حذف خبر محمية
+router.post('/', protect, NewsController.createNews); // Add a new news item (protected)
+router.put('/:id', protect, NewsController.updateNews); // Update a news item (protected)
+router.delete('/:id', protect, NewsController.deleteNews); // Delete a news item (protected)
 
 
 // Pagination Route
