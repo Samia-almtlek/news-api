@@ -93,7 +93,8 @@ Testing
 Use tools like Postman or Insomnia to test the API endpoints.
 Ensure all required headers and payloads are included for requests.
 ---
-##Helpful Resources
+#Helpful Resources
+
 While working on this project, I referred to the following resources to understand certain concepts better and also i used the slides on canvas:
 * https://www.youtube.com/watch?v=bB5tpD0Y73w
 * https://youtu.be/-MTSQjw5DrM?si=nQ5hqLcpIT5X2rrr
@@ -101,7 +102,8 @@ While working on this project, I referred to the following resources to understa
 * https://www.youtube.com/watch?v=pKd0Rpw7O48
 * https://www.youtube.com/watch?v=TlB_eWDSMt4
 ---
-##Notes
+#Notes
+
 Input validation and JWT authentication were implemented to meet the project’s requirements.
 The code is structured to allow future enhancements or integration with a frontend.
 The frontend is not perfect and was created primarily for personal understanding and to test the API functionality.
