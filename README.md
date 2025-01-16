@@ -31,8 +31,7 @@ Search functionality using title, author, or category.
 Sorting news by category.
 Protected routes for creating, updating, and deleting news.
  
-    ---
-
+    
 ## Endpoints
 
 ### Users Endpoints
@@ -53,7 +52,6 @@ Protected routes for creating, updating, and deleting news.
 - **GET** `/api/news/search`: Search for news by title, author, or category.
 - **GET** `/api/news/sorted-by-category`: Retrieve news sorted by category.
 
----
 ## Installation
 
 ### Prerequisites
