@@ -7,7 +7,7 @@ This project is built with Node.js, Express, and MongoDB, designed for managing 
 
 ## Features
 
-### Users Management
+## Users Management
 -CRUD Operations:
 Add, retrieve, update, and delete users.
 Authentication: User login with email and password to obtain a JWT.
@@ -15,8 +15,8 @@ Authentication: User login with email and password to obtain a JWT.
 Name must only contain letters.
 Email must be valid.
 Password must be at least 6 characters long.
-
-### News Management
+---
+## News Management
 -CRUD Operations:
 Add, retrieve, update, and delete news items.
 -Validation:
@@ -30,11 +30,11 @@ Pagination for fetching news.
 Search functionality using title, author, or category.
 Sorting news by category.
 Protected routes for creating, updating, and deleting news.
- 
+--- 
     
 ## Endpoints
 
-### Users Endpoints
+## Users Endpoints
 - **POST** `/api/users`: Add a new user.
 - **GET** `/api/users`: Retrieve all users.
 - **GET** `/api/users/:id`: Retrieve a specific user by ID.
@@ -42,7 +42,7 @@ Protected routes for creating, updating, and deleting news.
 - **DELETE** `/api/users/:id`: Delete a specific user by ID.
 - **POST** `/api/users/login`: User login to get a JWT token.
 
-### News Endpoints
+## News Endpoints
 - **POST** `/api/news`: Add a new news item (protected).
 - **GET** `/api/news`: Retrieve all news items.
 - **GET** `/api/news/:id`: Retrieve a specific news item by ID.
@@ -52,9 +52,10 @@ Protected routes for creating, updating, and deleting news.
 - **GET** `/api/news/search`: Search for news by title, author, or category.
 - **GET** `/api/news/sorted-by-category`: Retrieve news sorted by category.
 
+---
 ## Installation
 
-### Prerequisites
+## Prerequisites
 - **Node.js** (version 20 or higher)
 - **MongoDB Atlas**
 
@@ -82,7 +83,7 @@ PORT=3000
       
     *Use the available endpoints for API functionality and documentation.
 
-###Authentication
+##Authentication
 To access protected routes, log in using /api/users/login to get a JWT.
 Include the token in the Authorization header for requests:
 makefile
@@ -92,7 +93,7 @@ Authorization: Bearer <your_token>
 Testing
 Use tools like Postman or Insomnia to test the API endpoints.
 Ensure all required headers and payloads are included for requests.
-
+---
 ###Helpful Resources
 While working on this project, I referred to the following resources to understand certain concepts better and also i used the slides on canvas:
 * https://www.youtube.com/watch?v=bB5tpD0Y73w
@@ -100,8 +101,8 @@ While working on this project, I referred to the following resources to understa
 * https://www.youtube.com/watch?v=sbt9XbAXb94
 * https://www.youtube.com/watch?v=pKd0Rpw7O48
 * https://www.youtube.com/watch?v=TlB_eWDSMt4
-
-###Notes
+---
+##Notes
 Input validation and JWT authentication were implemented to meet the project’s requirements.
 The code is structured to allow future enhancements or integration with a frontend.
 The frontend is not perfect and was created primarily for personal understanding and to test the API functionality.
