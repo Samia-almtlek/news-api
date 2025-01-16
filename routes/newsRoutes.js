@@ -1,6 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const NewsController = require('../controllers/newsController');
+const { protect } = require('../middleware/authMiddleware');
+
+router.post('/', protect, NewsController.createNews); // إضافة خبر جديد محمية
+router.put('/:id', protect, NewsController.updateNews); // تعديل خبر محمية
+router.delete('/:id', protect, NewsController.deleteNews); // حذف خبر محمية
+
 
 // Pagination Route
 router.get('/paginated', NewsController.getPaginatedNews);

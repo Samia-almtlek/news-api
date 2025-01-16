@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+
 const User = require('../models/userModel');
 
 // Create User
@@ -70,6 +72,28 @@ exports.deleteUser = async (req, res) => {
         const user = await User.findByIdAndDelete(req.params.id);
         if (!user) return res.status(404).json({ message: 'User not found' });
         res.status(200).json({ message: 'User deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+// Login
+exports.login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        // التحقق من وجود المستخدم
+        const user = await User.findOne({ email });
+        if (!user || user.password !== password) {
+            return res.status(401).json({ error: 'Invalid email or password' });
+        }
+
+        // إنشاء رمز JWT
+        const token = jwt.sign({ id: user._id, email: user.email }, 'secretKey', {
+            expiresIn: '1h', // صلاحية الرمز لمدة ساعة
+        });
+
+        res.status(200).json({ token });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

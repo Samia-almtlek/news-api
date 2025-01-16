@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const UserController = require('../controllers/userController');
 
+router.post('/login', UserController.login);
+
 // CRUD Routes
 router.post('/', UserController.createUser);    // Create User
 router.get('/', UserController.getUsers);      // Get All Users
