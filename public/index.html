@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+</head>
+<body>
+    <h1>API Documentation</h1>
+    <p>This is the documentation for the API, listing all available endpoints.</p>
+
+    <h2>Users Endpoints</h2>
+    <ul>
+        <li><strong>POST /api/users</strong>: Add a new user</li>
+        <li><strong>GET /api/users</strong>: Retrieve all users</li>
+        <li><strong>GET /api/users/:id</strong>: Retrieve a user by ID</li>
+        <li><strong>PUT /api/users/:id</strong>: Update a user by ID</li>
+        <li><strong>DELETE /api/users/:id</strong>: Delete a user by ID</li>
+        <li><strong>POST /api/users/login</strong>: User login to get JWT</li>
+    </ul>
+
+    <h2>News Endpoints</h2>
+    <ul>
+        <li><strong>POST /api/news</strong>: Add a news item (requires JWT)</li>
+        <li><strong>GET /api/news</strong>: Retrieve all news items</li>
+        <li><strong>GET /api/news/:id</strong>: Retrieve a news item by ID</li>
+        <li><strong>PUT /api/news/:id</strong>: Update a news item (requires JWT)</li>
+        <li><strong>DELETE /api/news/:id</strong>: Delete a news item (requires JWT)</li>
+        <li><strong>GET /api/news/paginated</strong>: Retrieve news with pagination</li>
+        <li><strong>GET /api/news/search</strong>: Search for news by title, author, or category</li>
+        <li><strong>GET /api/news/sorted-by-category</strong>: Retrieve news sorted by category</li>
+    </ul>
+
+    <h2>Protected Routes</h2>
+    <p>For protected routes, include the following header with a valid JWT:</p>
+    <pre><code>Authorization: Bearer <your-token></code></pre>
+</body>
+</html>
