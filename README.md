@@ -56,8 +56,8 @@ Protected routes for creating, updating, and deleting news.
 # Installation
 
 ## Prerequisites
-- **Node.js** (version 20 or higher)
-- **MongoDB Atlas**
+- **Node.js (version 20 or higher):** [Download and Install Node.js](https://nodejs.org/).
+- **MongoDB Atlas:** A cloud-based MongoDB instance. [Sign up and set up MongoDB Atlas](https://www.mongodb.com/atlas/database).
 
 ### Steps
 
@@ -68,30 +68,57 @@ Protected routes for creating, updating, and deleting news.
  
 3. Install dependencies: npm install
   
-4. Configure environment variables:
-Create a .env file in the root directory and add the following variables:
-MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/<dbname>?retryWrites=true&w=majority
-JWT_SECRET=your_secret_key
-PORT=3000
+4. **Configure environment variables:**
+   - Create a `.env` file in the root directory.
+   - Add the following variables:
+     ```env
+     MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/<dbname>?retryWrites=true&w=majority
+     JWT_SECRET=your_secret_key
+     PORT=3000
+     ```
+   - Replace `<username>`, `<password>`, and `<dbname>` with your MongoDB Atlas credentials.
+   - Ensure your MongoDB cluster is running and accessible.
+
 
    
-5. Start the server: node server.js
+5. **Start the server:**
+   ```bash
+   node server.js
+
     
-6. Access the application:
-    * Open your browser or Postman and navigate to:
-       http://localhost:3000
-      
-    *Use the available endpoints for API functionality and documentation.
+6. **Access the application:**
+   - Open your browser and navigate to:
+     ```url
+     http://localhost:3000
+     ```
+     This will display the API documentation.
+   - Use tools like **Postman** or **Insomnia** to test the available API endpoints.
 
-##Authentication
-To access protected routes, log in using /api/users/login to get a JWT.
-Include the token in the Authorization header for requests:
-makefile
 
-Authorization: Bearer <your_token>
-Testing
-Use tools like Postman or Insomnia to test the API endpoints.
-Ensure all required headers and payloads are included for requests.
+### Authentication
+- To access protected routes:
+  1. Log in using:
+     ```bash
+     POST /api/users/login
+     ```
+     Example body:
+     ```json
+     {
+       "email": "example@example.com",
+       "password": "yourpassword"
+     }
+     ```
+  2. Use the returned JWT token in the `Authorization` header for protected routes:
+     ```
+     Authorization: Bearer <your_token>
+     ```
+
+### Testing
+- Use tools like **Postman** or **Insomnia** to test the API endpoints.
+- Ensure:
+  - Correct headers are included (e.g., `Authorization` for protected routes).
+  - Required fields are provided in the request body.
+
 ---
 #Helpful Resources
 
