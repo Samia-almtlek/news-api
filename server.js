@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const path = require('path');
 const cors = require('cors');
 const dbConfig = require('./config/db');
 
@@ -26,9 +27,14 @@ mongoose.connect(dbConfig.mongoURI)
 app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/news', require('./routes/newsRoutes'));
 
-const path = require('path');
+
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// Serve the documentation at the root
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 
 
