@@ -5,7 +5,7 @@
 This project is built with Node.js, Express, and MongoDB, designed for managing users and news. It includes key features like user authentication, input validation, pagination, search, and sorting. JWT (JSON Web Token) is used to secure certain routes, ensuring proper authentication for sensitive operations.
 ---
 
-## Features
+# Features
 
 ## Users Management
 -CRUD Operations:
@@ -32,7 +32,7 @@ Sorting news by category.
 Protected routes for creating, updating, and deleting news.
 --- 
     
-## Endpoints
+# Endpoints
 
 ## Users Endpoints
 - **POST** `/api/users`: Add a new user.
@@ -53,7 +53,7 @@ Protected routes for creating, updating, and deleting news.
 - **GET** `/api/news/sorted-by-category`: Retrieve news sorted by category.
 
 ---
-## Installation
+# Installation
 
 ## Prerequisites
 - **Node.js** (version 20 or higher)
@@ -87,14 +87,13 @@ PORT=3000
 To access protected routes, log in using /api/users/login to get a JWT.
 Include the token in the Authorization header for requests:
 makefile
-نسخ
-تحرير
+
 Authorization: Bearer <your_token>
 Testing
 Use tools like Postman or Insomnia to test the API endpoints.
 Ensure all required headers and payloads are included for requests.
 ---
-###Helpful Resources
+##Helpful Resources
 While working on this project, I referred to the following resources to understand certain concepts better and also i used the slides on canvas:
 * https://www.youtube.com/watch?v=bB5tpD0Y73w
 * https://youtu.be/-MTSQjw5DrM?si=nQ5hqLcpIT5X2rrr
