@@ -103,3 +103,20 @@ exports.searchNews = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+// Get Sorted News by Category
+exports.getSortedNewsByCategory = async (req, res) => {
+    try {
+        const { order = 'asc' } = req.query;
+
+        // تحديد ترتيب الفرز (1 للتصاعدي و -1 للتنازلي)
+        const sortOrder = order === 'desc' ? -1 : 1;
+
+        // فرز النتائج حسب التصنيف
+        const news = await News.find().sort({ category: sortOrder });
+
+        res.status(200).json(news);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+

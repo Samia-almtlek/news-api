@@ -8,6 +8,9 @@ router.get('/paginated', NewsController.getPaginatedNews);
 //Search news
 router.get('/search', NewsController.searchNews);
 
+//Sorting by category
+router.get('/sorted-by-category', NewsController.getSortedNewsByCategory);
+
 
 // CRUD Routes
 router.post('/', NewsController.createNews);    // Create News

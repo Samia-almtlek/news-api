@@ -174,6 +174,38 @@ document.getElementById('search-form').addEventListener('submit', function (e) {
         .catch(err => console.error('Error:', err));
 });
 
+//Sort news
+document.getElementById('sort-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const sortOrder = document.getElementById('sort-order').value;
+
+    fetch(`/api/news/sorted-by-category?order=${sortOrder}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error fetching sorted results');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const newsContainer = document.getElementById('news-container');
+            newsContainer.innerHTML = ''; // تفريغ الأخبار السابقة
+
+            data.forEach(news => {
+                const newsDiv = document.createElement('div');
+                newsDiv.classList.add('news');
+                newsDiv.innerHTML = `
+                    <h3>${news.title}</h3>
+                    <p>${news.description}</p>
+                    <p><strong>Category:</strong> ${news.category}</p>
+                    <small>Author: ${news.author}</small>
+                `;
+                newsContainer.appendChild(newsDiv);
+            });
+        })
+        .catch(err => console.error('Error:', err));
+});
+
 
 // Delete news
 function deleteNews(id) {
