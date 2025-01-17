@@ -108,16 +108,17 @@ Protected routes for creating, updating, and deleting news.
   - Required fields are provided in the request body.
 
 ---
-#Helpful Resources
+# Helpful Resources
 
 While working on this project, I referred to the following resources to understand certain concepts better and also i used the slides on canvas:
+* Chatgpt
 * https://www.youtube.com/watch?v=bB5tpD0Y73w
 * https://youtu.be/-MTSQjw5DrM?si=nQ5hqLcpIT5X2rrr
 * https://www.youtube.com/watch?v=sbt9XbAXb94
 * https://www.youtube.com/watch?v=pKd0Rpw7O48
 * https://www.youtube.com/watch?v=TlB_eWDSMt4
 ---
-#Notes
+# Notes
 
 Input validation and JWT authentication were implemented to meet the project’s requirements.
 The code is structured to allow future enhancements or integration with a frontend.
