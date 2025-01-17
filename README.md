@@ -68,25 +68,13 @@ Protected routes for creating, updating, and deleting news.
  
 3. Install dependencies: npm install
   
-4. **Configure environment variables:**
-   - Create a `.env` file in the root directory.
-   - Add the following variables:
-     ```env
-     MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/<dbname>?retryWrites=true&w=majority
-     JWT_SECRET=your_secret_key
-     PORT=3000
-     ```
-   - Replace `<username>`, `<password>`, and `<dbname>` with your MongoDB Atlas credentials.
-   - Ensure your MongoDB cluster is running and accessible.
-
-
    
-5. **Start the server:**
+4. **Start the server:**
    ```bash
    node server.js
 
     
-6. **Access the application:**
+5. **Access the application:**
    - Open your browser and navigate to:
      ```url
      http://localhost:3000
